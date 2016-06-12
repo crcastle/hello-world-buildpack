@@ -4,4 +4,7 @@ indent() {
   sed -u 's/^/       /'
 }
 
-echo "To create/renew cert, run letsencrypt.sh -c" | indent
+cp letsencrypt.sh $1/
+
+echo "-----> To create/renew cert, run the following command"
+echo "heroku run ./letsencrypt.sh -c" | indent
