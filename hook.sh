@@ -31,6 +31,8 @@ function clean_challenge {
     # files or DNS records that are no longer needed.
     #
     # The parameters are the same as for deploy_challenge.
+
+    ./vendor/heroku-toolbelt/bin/heroku config:remove --app $HEROKU_APP_NAME LETSENCRYPT_TOKEN_FILENAME LETSENCRYPT_TOKEN_VALUE
 }
 
 function deploy_cert {
