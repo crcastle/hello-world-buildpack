@@ -32,6 +32,7 @@ function clean_challenge {
     #
     # The parameters are the same as for deploy_challenge.
 
+    # clean up heroku env vars used for letsencrypt validation
     ./vendor/heroku-toolbelt/bin/heroku config:remove --app $HEROKU_APP_NAME LETSENCRYPT_TOKEN_FILENAME LETSENCRYPT_TOKEN_VALUE
 }
 
@@ -57,8 +58,13 @@ function deploy_cert {
     # - TIMESTAMP
     #   Timestamp when the specified certificate was created.
 
+    # enable SNI labs feature (ok if already enabled)
     ./vendor/heroku-toolbelt/bin/heroku labs:enable http-sni --app $HEROKU_APP_NAME
+
+    # install the heroku-certs CLI plugin
     ./vendor/heroku-toolbelt/bin/heroku plugins:install heroku-certs --app $HEROKU_APP_NAME
+
+    # add the certificate and key to heroku
     ./vendor/heroku-toolbelt/bin/heroku _certs:add $FULLCHAINFILE $KEYFILE --app $HEROKU_APP_NAME
 
     echo "-----> KEY"
