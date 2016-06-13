@@ -8,7 +8,7 @@ indent() {
 cp letsencrypt.sh config hook.sh $1/
 
 # create domains.txt on slug and populate with HTTPS_DOMAINS env var
-echo $(cat "$ENV_DIR/HTTPS_DOMAINS") > $1/domains.txt
+echo $(cat "$3/HTTPS_DOMAINS") > $1/domains.txt
 
 # create a directory the letsencrypt script needs to temporarily store challenges
 mkdir -p $1/.acme-challenges
