@@ -19,6 +19,7 @@ function deploy_challenge {
     #   validation, this is what you want to put in the _acme-challenge
     #   TXT record. For HTTP validation it is the value that is expected
     #   be found in the $TOKEN_FILENAME file.
+
     ./vendor/heroku-toolbelt/bin/heroku config:set --app $HEROKU_APP_NAME LETSENCRYPT_TOKEN_FILENAME=$TOKEN_FILENAME LETSENCRYPT_TOKEN_VALUE=$TOKEN_VALUE
 }
 
@@ -53,6 +54,22 @@ function deploy_cert {
     #   The path of the file containing the intermediate certificate(s).
     # - TIMESTAMP
     #   Timestamp when the specified certificate was created.
+
+    ./vendor/heroku-toolbelt/bin/heroku labs:enable http-sni --app $HEROKU_APP_NAME
+    ./vendor/heroku-toolbelt/bin/heroku plugins:install heroku-certs --app $HEROKU_APP_NAME
+    ./vendor/heroku-toolbelt/bin/heroku _certs:add $FULLCHAINFILE $KEYFILE --app $HEROKU_APP_NAME
+
+    echo "-----> KEY"
+    cat $KEYFILE
+    echo
+
+    echo "-----> CERT"
+    cat $CERTFILE
+    echo
+
+    echo "-----> FULLCHAIN"
+    cat $FULLCHAINFILE
+    echo
 }
 
 function unchanged_cert {
