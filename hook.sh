@@ -21,6 +21,7 @@ function deploy_challenge {
     #   be found in the $TOKEN_FILENAME file.
 
     ./vendor/heroku-toolbelt/bin/heroku config:set --app $HEROKU_APP_NAME LETSENCRYPT_TOKEN_FILENAME=$TOKEN_FILENAME LETSENCRYPT_TOKEN_VALUE=$TOKEN_VALUE
+    sleep 1
 }
 
 function clean_challenge {
@@ -34,6 +35,7 @@ function clean_challenge {
 
     # clean up heroku env vars used for letsencrypt validation
     ./vendor/heroku-toolbelt/bin/heroku config:remove --app $HEROKU_APP_NAME LETSENCRYPT_TOKEN_FILENAME LETSENCRYPT_TOKEN_VALUE
+    sleep 1
 }
 
 function deploy_cert {
