@@ -4,8 +4,14 @@ indent() {
   sed -u 's/^/       /'
 }
 
-cp letsencrypt.sh domains.txt config hook.sh $1/
-mkdir $1/.acme-challenges
+# copy the letsencrypt script, config file, plus hook functions to slug
+cp letsencrypt.sh config hook.sh $1/
+
+# create domains.txt on slug and populate with HTTPS_DOMAINS env var
+echo $(cat "$ENV_DIR/HTTPS_DOMAINS") > $1/domains.txt
+
+# create a directory the letsencrypt script needs to temporarily store challenges
+mkdir -p $1/.acme-challenges
 
 echo "-----> To create or renew cert, run the following command"
 echo "heroku run ./letsencrypt.sh -c" | indent
