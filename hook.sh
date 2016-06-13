@@ -19,7 +19,7 @@ function deploy_challenge {
     #   validation, this is what you want to put in the _acme-challenge
     #   TXT record. For HTTP validation it is the value that is expected
     #   be found in the $TOKEN_FILENAME file.
-    ./vendor/heroku-toolbelt/bin/heroku config:set LETSENCRYPT_TOKEN_FILENAME=$TOKEN_FILENAME LETSENCRYPT_TOKEN_VALUE=$TOKEN_VALUE
+    ./vendor/heroku-toolbelt/bin/heroku config:set LETSENCRYPT_TOKEN_FILENAME=$TOKEN_FILENAME LETSENCRYPT_TOKEN_VALUE=$TOKEN_VALUE -a $HEROKU_APP_NAME
 }
 
 function clean_challenge {
