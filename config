@@ -1,1 +1,2 @@
+CA="https://acme-staging.api.letsencrypt.org/directory"
 HOOK="${BASEDIR}/hook.sh"
