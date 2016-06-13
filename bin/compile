@@ -4,7 +4,8 @@ indent() {
   sed -u 's/^/       /'
 }
 
-cp letsencrypt.sh domains.txt config $1/
+cp letsencrypt.sh domains.txt config hook.sh $1/
+mkdir .acme-challenges
 
-echo "-----> To create/renew cert, run the following command"
+echo "-----> To create or renew cert, run the following command"
 echo "heroku run ./letsencrypt.sh -c" | indent
