@@ -69,17 +69,17 @@ function deploy_cert {
     # add the certificate and key to heroku
     ./vendor/heroku-toolbelt/bin/heroku _certs:add $FULLCHAINFILE $KEYFILE --app $HEROKU_APP_NAME
 
-    echo "-----> KEY"
-    cat $KEYFILE
-    echo
-
-    echo "-----> CERT"
-    cat $CERTFILE
-    echo
-
-    echo "-----> FULLCHAIN"
-    cat $FULLCHAINFILE
-    echo
+    # echo "-----> KEY"
+    # cat $KEYFILE
+    # echo
+    #
+    # echo "-----> CERT"
+    # cat $CERTFILE
+    # echo
+    #
+    # echo "-----> FULLCHAIN"
+    # cat $FULLCHAINFILE
+    # echo
 }
 
 function unchanged_cert {
