@@ -5,7 +5,7 @@ indent() {
 }
 
 cp letsencrypt.sh domains.txt config hook.sh $1/
-mkdir .acme-challenges
+mkdir $1/.acme-challenges
 
 echo "-----> To create or renew cert, run the following command"
 echo "heroku run ./letsencrypt.sh -c" | indent
